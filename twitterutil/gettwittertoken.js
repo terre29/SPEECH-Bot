@@ -4,7 +4,8 @@ const needle = require('needle');
 const rulesURL = 'https://api.twitter.com/2/tweets/search/stream/rules'
 const streamURL = 'https://api.twitter.com/2/tweets/search/stream?user.fields=username,profile_image_url,url&expansions=author_id,attachments.media_keys&media.fields=preview_image_url,url'
 
-const rules = [{value : '-is:retweet (from:natasha_mikha14 OR from:ryoukochikage OR from:NoyomiNeichi OR from:JoanaMaoh OR from:KotobaStation)'}]
+//const rules = [{value : '-is:retweet (from:natasha_mikha14 OR from:ryoukochikage OR from:NoyomiNeichi OR from:JoanaMaoh OR from:KotobaStation)'}]
+const rules = [{value : 'cat'}]
 
 // get stream rules
 async function getTweetsRules() {
@@ -28,8 +29,8 @@ function streamTweet(client) {
 
     stream.on('data', (datas) => {
         try {
-        //  console.log(media)      
-        //  console.log(JSON.stringify(json)) 
+            const json = JSON.parse(datas)
+            console.log(json)
           const poster = require('./posttweet');
           poster.post(datas, client)
         } catch (error) {
