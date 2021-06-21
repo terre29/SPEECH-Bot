@@ -1,0 +1,20 @@
+{
+  "name": "adrianabot",
+  "version": "1.0.0",
+  "description": "adriana discord bot",
+  "main": "adriana.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Terre",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "needle": "^2.6.0",
+    "socket.io": "^4.1.2",
+    "twit": "^2.2.11",
+    "twitter-v2": "^1.1.0"
+  }
+}
