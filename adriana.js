@@ -1,17 +1,26 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const t = setInterval(setTwitter, 305000)
+const twitter = require('./twitterutil/gettwittertoken.js');
+const { channel } = require('./twitterutil/posttweet.js');
 
 client.once('ready', ()=> {
     console.log("Online");
+    const twitter = require('./twitterutil/gettwittertoken.js');
+    twitter.run(client)
 });
 
 client.on('ready', () => {
   console.log('Ready to burn!');
-  const twitter = require('./twitterutil/gettwittertoken.js');
-  twitter.run(client);
+
 });
 
+function setTwitter() {
+    twitter.run(client)
+}
+
 client.on('message', message => {
+
   if (message.author.username == 'Adriana Hooker') {
     message.delete();
     message.channel.send(message.content);
@@ -36,6 +45,10 @@ client.on('message', message => {
       //   const burn = require('./commands/burn.js');
       //   burn.burnMember(message);
       //   break
+      case '//twit' :
+        const getExTweet = require('./commands/testtwitterpersonalize');
+        getExTweet.testTweet(message);
+        break;
   }
 
   if (message.content === 'ping') {
