@@ -48,6 +48,10 @@ client.on('message', message => {
         const getExTweet = require('./commands/testtwitterpersonalize');
         getExTweet.testTweet(message);
         break;
+      case '//meme' :
+        const getMeme = require('./commands/getmeme.js')
+        getMeme.searchMeme(message);
+        break;
   }
 
   if (message.content === 'ping') {
