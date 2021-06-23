@@ -63,7 +63,7 @@ module.exports = {
         const embedMessage = new Discord.MessageEmbed()
             .setColor(viewModel.palletcolor)
             .setTitle('Tweet Posted!')
-            .setAuthor(`${viewModel.Name}`, 'https://i.imgur.com/qEGidBc.png', `${viewModel.twitterurl}`)
+            .setAuthor(`${viewModel.nameToDisplay}`, 'https://i.imgur.com/qEGidBc.png', `${viewModel.twitterurl}`)
             .setDescription(viewModel.tweetText)
             .setFooter(`${viewModel.nameToDisplay}`, 'https://i.imgur.com/qEGidBc.png')
             message.channel.send(`Hey look at it folks! ${viewModel.twitteruser} has just tweet something! Check it out now!`)
