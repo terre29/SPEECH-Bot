@@ -2,8 +2,8 @@ const needle = require('needle');
 needle.defaults({
     open_timeout: 0
 });
-
-
+require('dotenv').config()
+const tweeterBearerToken = process.env.TWITTER_BEARER_TOKEN 
 const rulesURL = 'https://api.twitter.com/2/tweets/search/stream/rules'
 const streamURL = 'https://api.twitter.com/2/tweets/search/stream?user.fields=username,profile_image_url&expansions=author_id,attachments.media_keys&media.fields=preview_image_url,url'
 
@@ -15,7 +15,7 @@ async function getTweetsRules() {
     const response = await needle('get', rulesURL, {
         headers: {
            
-            Authorization: 'Bearer AAAAAAAAAAAAAAAAAAAAAK5oQwEAAAAAlh%2FWJL%2BDsrSNdxYZucVXmI5pUek%3DbZIAzdJtCsr3TII4h2N8WvOAtiUhQB7xwaAvsWBBYAYo3UjVp0',
+            Authorization: `Bearer ${tweeterBearerToken}`,
         },
         open_timeout : 0
         
@@ -29,7 +29,7 @@ function streamTweet(client) {
     const stream = needle.get(streamURL, {
         headers: {
             
-            Authorization: 'Bearer AAAAAAAAAAAAAAAAAAAAAK5oQwEAAAAAlh%2FWJL%2BDsrSNdxYZucVXmI5pUek%3DbZIAzdJtCsr3TII4h2N8WvOAtiUhQB7xwaAvsWBBYAYo3UjVp0',
+            Authorization: `Bearer ${tweeterBearerToken}`,
         },
         open_timeout : 0
 
@@ -68,7 +68,7 @@ async function deleteTweetsRules(rules) {
     const response = await needle('post', rulesURL, data, {
         headers: {
             'content-type' : 'application/json',
-            Authorization: 'Bearer AAAAAAAAAAAAAAAAAAAAAK5oQwEAAAAAlh%2FWJL%2BDsrSNdxYZucVXmI5pUek%3DbZIAzdJtCsr3TII4h2N8WvOAtiUhQB7xwaAvsWBBYAYo3UjVp0',
+            Authorization: `Bearer ${tweeterBearerToken}`,
         },
         open_timeout : 0
     })
@@ -84,7 +84,7 @@ async function setTweetsRules() {
     const response = await needle('post', rulesURL, data, {
         headers: {
             'content-type' : 'application/json',
-            Authorization: 'Bearer AAAAAAAAAAAAAAAAAAAAAK5oQwEAAAAAlh%2FWJL%2BDsrSNdxYZucVXmI5pUek%3DbZIAzdJtCsr3TII4h2N8WvOAtiUhQB7xwaAvsWBBYAYo3UjVp0',
+            Authorization: `Bearer ${tweeterBearerToken}`,
         },
         open_timeout : 0,
     }) 
