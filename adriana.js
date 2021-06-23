@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const t = setInterval(setTwitter, 305000)
+//const t = setInterval(setTwitter, 305000)
 const twitter = require('./twitterutil/gettwittertoken.js');
 require('dotenv').config()
 
