@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const t = setInterval(setTwitter, 305000)
 const twitter = require('./twitterutil/gettwittertoken.js');
-const { channel } = require('./twitterutil/posttweet.js');
 
 client.once('ready', ()=> {
     console.log("Online");
