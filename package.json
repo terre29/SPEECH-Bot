@@ -4,7 +4,7 @@
   "description": "adriana discord bot",
   "main": "adriana.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node adriana.js"
   },
   "repository": {
     "type": "git",
