@@ -1,2 +1,1 @@
-worker: node adriana.js
-
+web: node adriana.js
