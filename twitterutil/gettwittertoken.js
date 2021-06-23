@@ -3,7 +3,7 @@ needle.defaults({
     open_timeout: 0
 });
 require('dotenv').config()
-const tweeterBearerToken = process.env.TWITTER_HEROKU_BEARER_TOKEN 
+const tweeterBearerToken = process.env.TWITTER_BEARER_TOKEN 
 const rulesURL = 'https://api.twitter.com/2/tweets/search/stream/rules'
 const streamURL = 'https://api.twitter.com/2/tweets/search/stream?user.fields=username,profile_image_url&expansions=author_id,attachments.media_keys&media.fields=preview_image_url,url'
 
