@@ -60,4 +60,4 @@ client.on('message', message => {
       message.channel.send(user);
   }
 });  
-client.login(process.env.DISCORD_TOKEN);
+client.login(process.env.DISCORD_HEROKU_TOKEN);
