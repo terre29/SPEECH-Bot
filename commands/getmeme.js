@@ -1,15 +1,34 @@
-const needle = require('needle')
+const needle = require('needle');
+const { MessageAttachment } = require('discord.js')
+var recentlyCalled = false;
+
+function restartRestriction() {
+    recentlyCalled = false
+}
+
+
 module.exports = {
     name: 'get twitter meme',
     description : 'post twitter meme to desired channel',
-    searchMeme: async (message) => {
-        const url = 'https://meme-api.herokuapp.com/gimme';
-        const meme = await needle('get', (url), {
-
-        });
-        console.log(meme.body)
-        const memeImage = meme.body.preview[3];
-        message.channel.send('Here\'s a meme for ya. LMAO', {files : [memeImage]})
-        
+    searchMeme(message) {
+        if (recentlyCalled) {
+            message.reply('Easy pal!, Give me 5 second to search the meme');
+        } else {
+            const url = 'https://meme-api.herokuapp.com/gimme';
+            needle.get(url, function(error, response, meme){
+                if (error) {
+                    console.log(err)
+                    message.reply('Whoops, there was an error. Please try again later')
+                    throw error;
+                }  else {
+                    console.log(meme)
+                    const preview = meme.preview
+                    const attachment = new MessageAttachment(preview[2])
+                    message.channel.send('Here\'s a meme for ya. LMAO', attachment)
+                    recentlyCalled = true
+                    setTimeout(restartRestriction, 5000)
+                }
+            })
+        }  
     }
 }
