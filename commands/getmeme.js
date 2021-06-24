@@ -23,7 +23,8 @@ module.exports = {
                 }  else {
                     console.log(meme)
                     const preview = meme.preview
-                    const attachment = new MessageAttachment(preview[2])
+                    const mLength = preview.length
+                    const attachment = new MessageAttachment(preview[mLength-1])
                     message.channel.send('Here\'s a meme for ya. LMAO', attachment)
                     recentlyCalled = true
                     setTimeout(restartRestriction, 5000)
