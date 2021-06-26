@@ -1,13 +1,13 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-//const t = setInterval(setTwitter, 305000)
+const t = setInterval(setTwitter, 305000)
 const twitter = require('./twitterutil/gettwittertoken.js');
+const youtubeUtil = require('./youtubeutil/youtubelogin.js');
 require('dotenv').config()
 
 client.once('ready', ()=> {
     console.log("Online");
-    const twitter = require('./twitterutil/gettwittertoken.js');
-    twitter.run(client)
+    checkYoutubeAPI()
 });
 
 client.on('ready', () => {
@@ -19,8 +19,13 @@ function setTwitter() {
     twitter.run(client)
 }
 
-client.on('message', message => {
+function checkYoutubeAPI() {
+  youtubeUtil.run(client);
+  setTimeout(checkYoutubeAPI, 20000)
+}
 
+client.on('message', message => {
+  console.log(message.channel.id)
   if (message.author.username == 'Adriana Hooker') {
     message.delete();
     message.channel.send(message.content);
@@ -49,10 +54,16 @@ client.on('message', message => {
         const getExTweet = require('./commands/testtwitterpersonalize');
         getExTweet.testTweet(message);
         break;
-      case '//meme' :
-        const getMeme = require('./commands/getmeme.js')
-        getMeme.searchMeme(message);
-        break;
+      // case '//meme' :
+      //   const getMeme = require('./commands/getmeme.js')
+      //   getMeme.searchMeme(message);
+      //   break;
+      // case '//time' :
+      //   const timeNow = new Date(Date.now() - 5000);
+      //   const timeInIso = new Date(timeNow.getTime() - new Date().getTimezoneOffset()).toISOString();
+      
+      //   console.log(timeNow);      
+      //   console.log(timeInIso);
   }
 
   if (message.content === 'ping') {
@@ -60,4 +71,4 @@ client.on('message', message => {
       message.channel.send(user);
   }
 });  
-client.login(process.env.DISCORD_HEROKU_TOKEN);
+client.login(process.env.DISCORD_TOKEN);
