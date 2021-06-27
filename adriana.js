@@ -1,18 +1,18 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const t = setInterval(setTwitter, 305000)
+// const t = setInterval(setTwitter, 305000)
 const twitter = require('./twitterutil/gettwittertoken.js');
 const youtubeUtil = require('./youtubeutil/youtubelogin.js');
 require('dotenv').config()
 
 client.once('ready', ()=> {
     console.log("Online");
-    checkYoutubeAPI()
+  //  twitter.run(client)
+  //  checkYoutubeAPI()
 });
 
 client.on('ready', () => {
   console.log('Ready to burn!');
-
 });
 
 function setTwitter() {
@@ -54,10 +54,10 @@ client.on('message', message => {
         const getExTweet = require('./commands/testtwitterpersonalize');
         getExTweet.testTweet(message);
         break;
-      // case '//meme' :
-      //   const getMeme = require('./commands/getmeme.js')
-      //   getMeme.searchMeme(message);
-      //   break;
+      case '//meme' :
+        const getMeme = require('./commands/getmeme.js')
+        getMeme.searchMeme(message);
+        break;
       // case '//time' :
       //   const timeNow = new Date(Date.now() - 5000);
       //   const timeInIso = new Date(timeNow.getTime() - new Date().getTimezoneOffset()).toISOString();
