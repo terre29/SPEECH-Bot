@@ -11,8 +11,7 @@ module.exports = {
         .addFields(
             {name: 'Create a text channel : ', value: '//ctc(space)name. EX: //ctc Meeting-Room'},
             {name: 'Create a voice channel : ', value: '//cvc(space)name(space)limit. EX: //cvc Council-Meeting 4'},
-            {name: 'Burn people(Kick) : ', value: '//burn(space)name. EX: //burn Hyunwoo'},
-            {name: 'Patrol : ', value: 'Folks who spamming will be warned and will be burn if they keep spaming'},
+            {name: 'Send memes : ', value: '//meme.'},
         )
         message.channel.send(helpEmbed);
     }
