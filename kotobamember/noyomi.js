@@ -3,6 +3,6 @@ module.exports = {
     descripton : '',
     occupation : 'Gambler',
     palletcolor: '#B463C1',
-    twitteruser : '@NoyomiNeichi',
+    twitteruser : 'NoyomiNeichi',
     twitterurl : 'https://twitter.com/NoyomiNeichi',
 } 

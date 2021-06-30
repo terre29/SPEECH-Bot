@@ -3,16 +3,26 @@ const client = new Discord.Client();
 const t = setInterval(setTwitter, 305000)
 const twitter = require('./twitterutil/gettwittertoken.js');
 const youtubeUtil = require('./youtubeutil/youtubelogin.js');
+const mongo = require('./mongodb/mongodb.js')
 require('dotenv').config()
 
 client.once('ready', ()=> {
-    console.log("Online");
-    twitter.run(client)
-    checkYoutubeAPI()
+  console.log("Online");
+   twitter.run(client)
+   checkYoutubeAPI()
+
 });
 
-client.on('ready', () => {
+
+client.on('ready', async () => {
   console.log('Ready to burn!');
+  await mongo().then(mongoose => {
+    try {
+      console.log('The client is ready!')
+    } finally {
+      mongoose.connection.close()
+    }
+  })
 });
 
 function setTwitter() {
