@@ -1,20 +1,15 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-
-// const t = setInterval(setTwitter, 305000)
+ const t = setInterval(setTwitter, 305000)
 const twitter = require('./twitterutil/gettwittertoken.js');
-
-const t = setInterval(setTwitter, 305000)
-// const twitter = require('./twitterutil/gettwittertoken.js');
-
 const youtubeUtil = require('./youtubeutil/youtubelogin.js');
-const mongo = require('./mongodb.mongodb.js')
+const mongo = require('./mongodb/mongodb.js')
 require('dotenv').config()
 
 client.once('ready', ()=> {
     console.log("Online");
-  //  twitter.run(client)
-  //  checkYoutubeAPI()
+   twitter.run(client)
+   checkYoutubeAPI()
 });
 
 
@@ -23,8 +18,6 @@ client.on('ready', async () => {
   await mongo().then(mongoose => {
     try {
       console.log('The client is ready!')
-    } catch(err) {
-
     } finally {
       mongoose.connection.close()
     }
@@ -87,4 +80,4 @@ client.on('message', message => {
       message.channel.send(user);
   }
 });  
-client.login(process.env.DISCORD_TOKEN);
+client.login(process.env.DISCORD_HEROKU_TOKEN);

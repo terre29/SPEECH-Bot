@@ -7,10 +7,12 @@ module.exports = {
     post: async(datas, client) => {
         const guild = client.guilds.cache.get('783974041991512094');
         const channel = guild.channels.cache.get('805865870941225031');
+        // const channel = guild.channels.cache.get('857505960594505749');
         const json = JSON.parse(datas);
         const { data, includes } = json;
         const { text, author_id } = data;
         const { users } = includes;
+        const { id } = data;
         const author = users.find(({id}) => id === author_id);
         const {username, profile_image_url, url} = author;
         var viewModel = require('../viewmodel/twitterembedviewmodel.js')
@@ -84,11 +86,14 @@ module.exports = {
         }
 
         if(!viewModel.tweetMedia) {
+            console.log(id);
             const embedMessage = new Discord.MessageEmbed()
             .setColor(`${viewModel.palletcolor}`)
             .setTitle('Tweet Posted!')
+            .setURL(`https://twitter.com/${viewModel.twitteruser}/status/${id}`)
             .setAuthor(`${viewModel.nameToDisplay}`, `${profile_image_url}`, `${viewModel.twitterurl}`)
             .setDescription(`${viewModel.tweetText}`)
+            .setThumbnail('https://i.imgur.com/7Kg8PuW.png')
             .setFooter(`${viewModel.twitteruser} of Kotoba Station`, 'https://i.imgur.com/qEGidBc.png')
             channel.send(`Hey folks! ${viewModel.nameToDisplay} has just tweet something! Check it out now!`)
             channel.send(embedMessage)
@@ -105,8 +110,10 @@ module.exports = {
             const embedMessage = new Discord.MessageEmbed()
             .setColor(`${viewModel.palletcolor}`)
             .setTitle('Tweet Posted!')
+            .setURL(`https://twitter.com/${viewModel.twitteruser}/status/${id}`)
             .setAuthor(`${viewModel.nameToDisplay}`, `${profile_image_url}`, `${viewModel.twitterurl}`)
             .setDescription(`${viewModel.tweetText}`)
+            .setThumbnail('https://i.imgur.com/7Kg8PuW.png')
             .setFooter(`${viewModel.twitteruser} of Kotoba Station`, 'https://i.imgur.com/qEGidBc.png')
             .setImage(images[0].attachment)
             channel.send(`Hey folks! ${viewModel.nameToDisplay} has just tweet something! Check it out now!`)

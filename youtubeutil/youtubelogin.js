@@ -13,8 +13,8 @@ module.exports = {
                 "contentDetails",
                 "snippet"
               ],
-              key : process.env.YOUTUBE_API_KEY,
-              channelId: process.env.KOTOBA_CHANNEL_ID,
+              key : process.env.YOUTUBE_API_HEROKU_KEY,
+              channelId: process.env.KOTOBA_CHANNEL_HEROKU_ID,
               maxResults: 1,
               publishedAfter: timeInIso
         };
