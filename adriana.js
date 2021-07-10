@@ -3,14 +3,18 @@ const client = new Discord.Client();
 const t = setInterval(setTwitter, 305000)
 const twitter = require('./twitterutil/gettwittertoken.js');
 const youtubeUtil = require('./youtubeutil/youtubelogin.js');
+const youtubelive = require('./youtubeutil/youtubegetlive');
 const mongo = require('./mongodb/mongodb.js')
+
 require('dotenv').config()
 
 client.once('ready', ()=> {
-  console.log("Online");
+   console.log("Online");
    twitter.run(client)
    checkYoutubeAPI()
-
+   console.log('Check Youtube Video Api is ready!')
+   checkYoutubeLive()
+   console.log('Check Youtube live Api is ready!')
 });
 
 
@@ -29,13 +33,17 @@ function setTwitter() {
     twitter.run(client)
 }
 
+function checkYoutubeLive() {
+  youtubelive.getLive(client);
+  setTimeout(checkYoutubeLive, 1800000);
+}
+
 function checkYoutubeAPI() {
   youtubeUtil.run(client);
-  setTimeout(checkYoutubeAPI, 20000)
+  setTimeout(checkYoutubeAPI, 30000);
 }
 
 client.on('message', message => {
-  console.log(message.channel.id)
   if (message.author.username == 'Adriana Hooker') {
     message.delete();
     message.channel.send(message.content);
