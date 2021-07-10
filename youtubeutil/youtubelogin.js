@@ -29,7 +29,7 @@ module.exports = {
         } else {
             const videoId = items[0].contentDetails.upload.videoId
             const link = `https://www.youtube.com/watch?v=${videoId}`
-            maintenanceChannel.send(`Hey ${kottamaRoleId}! Kotoba Station postd new video. Check it now! ${link}`)
+            channelTextYoutube.send(`Hey ${kottamaRoleId}! Kotoba Station postd new video. Check it now! ${link}`)
         }
         return response
     }
