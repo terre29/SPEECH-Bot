@@ -22,7 +22,7 @@ module.exports = {
               channelId: process.env.KOTOBA_CHANNEL_HEROKU_ID,
               order : 'date',
               maxResults: 5,
-              publipublishedAfter : timeInIso
+              publishedAfter : timeInIso
         };
         const response = await youtube.search.list(params);
         const item = response.data.items
